@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .fullWidth{
+        width: 90%;
+        margin: 2rem auto 6rem;
+        border-collapse: collapse;
+    }
+    .cellInput{
+        width: 100%;
+        border: none;
+        outline: none;
+        text-align: center;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    *{box-sizing: border-box}
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.wrapper img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: blur(3px)
+}
+.wrapper .reservationHolder{
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,39,94, 0.7);
+    overflow: hidden;
+    border-radius: 2rem;
+}
+.wrapper .reservationHolder .blockHolder{
+    height: 100%;
+    width: 300%;
+    margin: 0;
+    padding: 0;
+    transition-duration: 1s;
+}
+.wrapper .reservationHolder .blockHolder .block{
+    width: 33.3%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+}
+.wrapper .reservationHolder .blockHolder .block .cityHolder{
+    background: #FFCC00;
+    width: 70%;
+    margin: 1rem auto;
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition-duration: .5s;
+    border-radius: 1rem;
+}
+.wrapper .reservationHolder .blockHolder .block .cityHolder:hover{
+    color: #FFCC00;
+    background: #333;
+}
+.wrapper .reservationHolder .blockHolder .block .cityHolder p{
+    margin: 0;
+}
+.wrapper .reservationHolder .blockHolder .block h1{
+    font-size: 4rem;
+    color: #fff;
+}
+.wrapper .reservationHolder .blockHolder .block .cupsi{
+    font-size: 4rem;
+    color: #fff;
+    margin-top: 30%;
+}
+.wrapper .reservationHolder .blockHolder .block input{
+    border: none;
+    padding: 1rem;
+    outline: 0;
+    width: 70%;
+    border-radius: 1rem;
+    font-size: 2rem;
+}
+.wrapper .reservationHolder .blockHolder .block input{
+    border: none;
+    padding: 1rem;
+    outline: 0;
+    width: 70%;
+    border-radius: 1rem;
+    font-size: 2rem;
+}
+.wrapper .reservationHolder .blockHolder .block .buttonHolder{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.wrapper .reservationHolder .blockHolder .block .buttonHolder .dataHolder{
+    text-align: left;
+    font-size: 2rem;
+    padding: 7rem;
+}
+.wrapper .reservationHolder .blockHolder .block .buttonHolder .reservationButton{
+    width: 100%;
+    float: left;
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background: white;
+    border: 0;
+    background: #FFCC00;
+    color: #333;
+    outline: 0;
+    transition-duration: 1s;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.wrapper .reservationHolder .blockHolder .block .buttonHolder .reservationButton:hover{
+    color: #FFCC00;
+    background: #333;
+}
+#contactForm{
+    padding-top: 5%;
+}
+#contactForm input{
+    background: none;
+    color: #fff;
+}
+#contactForm .reservationButton{
+    width: 100%;
+    float: left;
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background: white;
+    border: 0;
+    background: #FFCC00;
+    color: #333;
+    outline: 0;
+    transition-duration: 1s;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+#contactForm .reservationButton:hover{
+    color: #FFCC00;
+    background: #333;
+}
+input.fileUploadButton{
+    cursor: pointer;
+    display: none;
+}
+.wrapper .tableHolder{
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    background: #fff;
+    width: 90%;
+    border-radius: 2rem;
+}
+.wrapper .tableHolder td{
+    position: relative;
+}
+.wrapper .tableHolder .styleButtonHolder{
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+    transition-duration: .2s;
+    overflow: hidden;
+    z-index: 1;
+}
+.wrapper .tableHolder .styleButtonHolder button{
+    width: 20px;
+    margin: 0;
+    float: left;
+    border: none;
+    background: #333;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #fff;
+    margin-left: 1px;
+    padding: 1px 3px;
+    outline: none;
+}
+.wrapper .tableHolder .styleButtonHolder button:hover{
+    background: #000;
+}
+.wrapper .reservationHolder .blockHolder .block .tableButtonHolder .createInput{
+    width: 35%;
+    font-size: 1.7rem;
+}
+.wrapper .reservationHolder .blockHolder .block .tableButtonHolder .labelInput{
+    margin-top: 1rem;
+    width: 70%;
+    font-size: 1.7rem;
+}
+.wrapper .reservationHolder .blockHolder .block .tableButtonHolder {
+    margin-top: 15%;
+}
+.wrapper .reservationHolder .blockHolder .block .tableButtonHolder button{
+    width: 50%;
+    font-size: 2rem;
+    margin-top: 5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 700;
+    color: #333;
+    background: #FFCC00;
+    cursor: pointer;
+    outline: none;
+}
+.wrapper .reservationHolder .blockHolder .block .tableButtonHolder button:hover{
+    color: #FFCC00;
+    background: #333;
+}
+.wrapper .saveChangesButton{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    background: green;
+    cursor: pointer;
+    outline: 0;
+    display: none;
+}
+.wrapper .saveChangesButton:hover{
+    background: darkgreen;
+}
+.wrapper .tableSizeInfo{
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 1.5rem;
+    color: #FFCC00;
+    background: #333;
+    font-weight: 700;
+    padding: 0 2rem;
+    border-radius: 1rem;
+}
+@media screen and (max-width: 768px){
+    .wrapper .reservationHolder{
+        width: 90%;
+        height: 90%;
+    }
+    .wrapper .reservationHolder .blockHolder .block h1{
+        font-size: 2rem;
+    }
+    .wrapper .reservationHolder .blockHolder .block input{
+        font-size: 1rem;
+        width: 90%;
+    }
+    .wrapper .reservationHolder .blockHolder .block p{
+        width: 80%;
+        margin: 10px auto;
+    }
+    .wrapper .reservationHolder .blockHolder .block .buttonHolder .reservationButton{
+        font-size: 1rem;
+    }
+    .wrapper .reservationHolder .blockHolder .block .cityHolder{
+        font-size: 1.5rem;
+    }
+}
+</style>
+<body>
+    <div class="wrapper">
+        <img src="https://static.dezeen.com/uploads/2018/10/interiors-news-offices-hero-1.jpg" alt="">
+        <div class="reservationHolder">
+            <div class="blockHolder">
+                <div class="block2 block">
+                    <h1>Izaberi jednu od opcija</h1>
+                    <div class="cityHolder" onclick="tableInfo(false)"><p>Izmeni postojecu tabelu</p></div>
+                    <div class="cityHolder" onclick="tableInfo(true)"><p>Napravi novu tabelu</p></div>
+                    <div class="buttonHolder">
+                        <button type="button" class="reservationButton previous">Prethodni Korak</button> 
+                    </div>
+                </div>
+                <div class="block3 block">
+                    <div class="tableButtonHolder"></div>
+                    <div class="buttonHolder">
+                        <button type="button" class="reservationButton previous tableCreate">Prethodni Korak</button>
+                    </div>
+                </div>
+                <div class="block4 block">
+                    <div class="cityHolder" onclick="saveFile()" style="margin-top: 20%;"><p>Sacuvaj tabelu</p></div>
+                    <div class="cityHolder" onclick="reloadPage()"><p>Napravi novu tabelu</p></div>
+                    <div class="buttonHolder">
+                        <button type="button" class="reservationButton previous">Prethodni Korak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tableHolder" onmouseup="mouseUp()"></div>
+        <button class="saveChangesButton" onclick="printMe()">&#10004;</button>
+        <button class="saveChangesButton" style="right: 5.3rem;padding: 0.8rem 0.7rem;" onclick="addRow()">R+</button>
+        <button class="saveChangesButton" style="right: 10rem;padding: 0.8rem 0.7rem;" onclick="addColumn()">C+</button>
+        <div class="tableSizeInfo"></div>
+    </div>
+</body>
+<script>
+    document.querySelectorAll('.next').forEach(item => {
+        item.addEventListener('click', nextStep)
+    })
+    document.querySelectorAll('.previous').forEach(item => {
+        item.addEventListener('click', stepBack)
+    })
+    var i = 1
+    var contentToSave = '';
+    var title = '';
+    function createTable(event){
+        event.preventDefault()
+        document.querySelector('.tableCreate').setAttribute('disabled', 'disabled')
+        document.querySelector('.tableCreate').style = 'opacity:0.5; cursor:not-allowed'
+        title = document.querySelector('.labelInput').value
+        rowCount = Number(document.querySelector('.rowNumber').value)
+        columnCount = Number(document.querySelector('.columnNumber').value)
+        var body = document.querySelector('.tableHolder'),
+        tbl  = document.createElement('table');
+        tbl.classList.add('fullWidth')
+        tbl.style = 'width: auto;margin: 2rem auto 6rem;border-collapse: collapse;'
+        for(var i = 0; i < rowCount; i++){
+            var tr = tbl.insertRow();
+            for(var j = 0; j < columnCount; j++){
+                if(i == rowCount - 1 && j == columnCount){
+                    break;
+                } else {
+                    var td = tr.insertCell();
+                    td.innerHTML = `<textarea type="text" class="cellInput"
+                                    onresize="tableResized()"
+                                    onclick="changeStyle(event)" 
+                                    onkeyup="cellChanged(event)" 
+                                    style="width: 5rem;text-align: center;padding: 0;box-sizing: border-box;border:none; font-family: Arial, Helvetica, sans-serif; font-size:16px; height: inherit;"
+                                    ></textarea><div class="styleButtonHolder">
+                                        <button onclick='boldFont(event)'>B</button>
+                                        <button onclick='bigger(event)'>+</button>
+                                        <button onclick='smaller(event)'>-</button>
+                                    <div>`;
+                    td.style = 'border:1px solid black; width:auto; height:20px;';
+                }
+            }
+        }
+        body.innerHTML = `<h1 style="text-align: center;font-family: Arial, Helvetica, sans-serif;">${title} </h1>`
+        body.appendChild(tbl);
+        document.querySelectorAll('.saveChangesButton').forEach(item => {
+            item.style.display = 'block';
+        })
+    }
+    function printMe(){
+        document.querySelectorAll('.styleButtonHolder').forEach((item, i) => {
+            item.style.display = 'none'
+        })
+        var printContent = document.querySelector('.tableHolder').innerHTML
+        var mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=200');
+        mywindow.document.body.innerHTML = printContent
+        mywindow.document.querySelectorAll('.cellInput').forEach(item => {
+            item.innerHTML += ' '
+        })
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        mywindow.print();
+        mywindow.close();
+        document.querySelectorAll('.saveChangesButton').forEach(item => {
+            item.style.display = 'none';
+        })
+        document.querySelector('.tableSizeInfo').innerHTML = ``
+        contentToSave = mywindow.document.body.innerHTML
+        nextStep()
+    }
+    function cellChanged(event){
+        var eventValue = event.currentTarget.value
+        event.currentTarget.innerText = eventValue
+    }
+    function saveFile(){
+        saveDocument(`${title}.html`, contentToSave)
+    }
+    function saveDocument(filename, text){
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+    function fileUploaded(event){
+        var fileDetails = event.target.files[0]
+        var reader = new FileReader()
+        reader.readAsText(fileDetails)
+        reader.onload = function () {
+            document.querySelector('.tableHolder').innerHTML = reader.result
+        }
+        document.querySelector('.saveChangesButton').style.display = 'block';
+    }
+    function b64DecodeUnicode(str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    }
+    function nextStep(){
+        var s = i * 100
+        document.querySelector('.blockHolder').style.marginLeft = '-' + s + '%'
+        i ++
+        checkForSteps()
+    }
+    function stepBack(){
+        i --
+        var m = document.querySelector('.blockHolder').style.marginLeft
+        var s = parseFloat(m) + 100
+        document.querySelector('.blockHolder').style.marginLeft = `${s}%`
+        checkForSteps()
+    }
+    function checkForSteps() {
+        if(i === 2){
+            document.querySelector('.tableHolder').style.display = 'block';
+        }else{
+            document.querySelector('.tableHolder').style.display = 'none';
+        }
+        
+    }
+    function tableInfo(create){
+        if(create){
+            document.querySelector('.tableButtonHolder').innerHTML = `<form onsubmit="createTable(event)">
+                                                                    <input type="number" class="rowNumber createInput" placeholder='Unesi broj redova' required>
+                                                                    <input type="number" class="columnNumber createInput" placeholder='Unesi broj kolona' required>
+                                                                    <input type="text" class="columnNumber labelInput" placeholder='Unesi naslov' required>
+                                                                    <button type="submit" class="tableCreate">Napravi tabelu</button>
+                                                                    </form>`
+            nextStep()
+        }else{
+            document.querySelector('.tableHolder').innerHTML = ''
+            document.querySelector('.tableButtonHolder').innerHTML = ` <label for="upload" class="cityHolder fileUploadLabel">Pronadji dokument</label>
+                                                                    <input id="upload" class="fileUploadButton" type="file" onchange="fileUploaded(event)" accept=".html">`
+            nextStep()
+        }
+    }
+    function renderResults(){
+        document.querySelector('.doctor').value = user.doctor
+        document.querySelector('.location').value = user.hotel
+        document.querySelector('.email').value = user.mail
+        document.querySelector('.city').value = user.city
+    }
+    function mouseUp(){
+        document.querySelector('.saveChangesButton').style.display = 'block';
+        tableWidth = document.querySelector('.fullWidth').clientWidth
+        if(tableWidth < 1100){
+            document.querySelector('.tableSizeInfo').innerHTML = `<p class="tableInfoText">Ovu tabelu mozes da stampas kao 'Portraint' i kao 'Landscape'</p>`
+        }else if(tableWidth > 1100 && tableWidth < 1450){
+            document.querySelector('.tableSizeInfo').innerHTML = `<p class="tableInfoText">Ovu tabelu mozes da stampas samo kao 'Landscape'</p>`
+        }else{
+            document.querySelector('.tableSizeInfo').innerHTML = `<p class="tableInfoText">Moras da smanjis tabelu</p>`
+        }
+    }
+    function reloadPage(){
+        location.reload()
+    }
+    function changeStyle(event){
+        let fieldCount = document.querySelectorAll('.styleButtonHolder')
+        fieldCount.forEach((item, i) => {
+            item.style.display = 'none'
+            if(i >= fieldCount.length - 1){
+                event.currentTarget.nextSibling.style.display = 'block'
+            }
+        })
+    }
+    function boldFont(event){
+        event.currentTarget.parentNode.previousSibling.style.fontWeight = 700
+    }
+    function bigger(event){
+        let textFontSize = Number(event.currentTarget.parentNode.previousSibling.style.fontSize.slice(0,2))
+        event.currentTarget.parentNode.previousSibling.style.fontSize = textFontSize + 1 + 'px'
+    }
+    function smaller(event){
+        let textFontSize = Number(event.currentTarget.parentNode.previousSibling.style.fontSize.slice(0,2))
+        event.currentTarget.parentNode.previousSibling.style.fontSize = textFontSize - 1 + 'px'
+    }
+    function addRow(){
+        let rowFields = document.querySelector('.fullWidth').firstChild
+        rowFields.innerHTML += `<tr>${rowFields.lastChild.innerHTML}</tr>`
+        console.log(rowFields)
+    }
+    function addColumn(){
+        let rowFields = document.querySelector('.fullWidth').firstChild.children
+        // rowFields.forEach(item => {
+        for(let m = 0; m <= rowFields.length - 1; m++){
+            rowFields[m].innerHTML += `<td style="border: 1px solid black; width: auto; height: 20px;"><textarea type="text" class="cellInput" onresize="tableResized()" onclick="changeStyle(event)" onkeyup="cellChanged(event)" style="width: 5rem;text-align: center;padding: 0;box-sizing: border-box;border:none; font-family: Arial, Helvetica, sans-serif; font-size:16px; height: inherit;"></textarea><div class="styleButtonHolder">
+                                        <button onclick="boldFont(event)">B</button>
+                                        <button onclick="bigger(event)">+</button>
+                                        <button onclick="smaller(event)">-</button>
+                                    <div></div></div></td>`
+        }
+            
+        // })
+    }
+</script>
+</html>
